@@ -22,3 +22,6 @@ class Solution:
                 max_length = len(current_substring)
         
         return max_length
+
+# Time Complexity: O(n)
+# Space Complexity: O(k) where k is the size of the character set
