@@ -1,26 +1,36 @@
-from typing import Optional
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head= new ListNode();
+        var currentNode = head;
+        int sum=0; int carryOver=0; 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+        while(l1!=null || l2!=null)
+        {
+           sum = (l1==null? 0: l1.val )+ (l2 == null? 0: l2.val) + carryOver;
+           currentNode.next = new ListNode(sum % 10);
+           currentNode = currentNode.next;
 
-class Solution:
-    def addTwoNumbers(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummyHead = ListNode(0)
-        currentNode = dummyHead
-        carryOver = 0
-        while list1 is not None or list2 is not None or carryOver != 0:
-            list1Value = list1.val if list1 else 0
-            list2Value = list2.val if list2 else 0
-            columnSum = list1Value + list2Value + carryOver
-            carryOver = columnSum // 10
-            newNode = ListNode(columnSum % 10)
-            currentNode.next = newNode
-            currentNode = newNode
-            list1 = list1.next if list1 else None
-            list2 = list2.next if list2 else None
-        return dummyHead.next
-    
-# Time Complexity: O(n)
-# Space Complexity: O(n)
+           carryOver = sum/10;
+           l1= l1?.next;
+           l2= l2?.next;
+        }
+
+        if(carryOver!= 0)
+        {
+            currentNode.next = new ListNode(carryOver);
+        }
+
+        return head.next;
+    }
+}
