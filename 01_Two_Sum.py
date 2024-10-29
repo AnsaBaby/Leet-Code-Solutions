@@ -1,21 +1,22 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        int[] output= new int[2];
-        for( int i=0; i<nums.Length; i++)
+        Dictionary<int,int> dict = new Dictionary<int,int>();
+        int diff=0;
+        for(int i=0; i<nums.Length; i++)
         {
-             for( int j=i+1; j<nums.Length; j++)
-                {
-                    if(nums[i] + nums[j] == target)
-                    {
-                        output[0]= i;
-                        output[1]=j;
-                        break;
-                    }
-                }
-         }
-         return output;
+            diff = target- nums[i];
+            if(dict.ContainsKey(diff))
+            {
+               return new int[]{i,dict[diff]};
+            }
+            else if(!dict.ContainsKey(nums[i]))
+            {
+              dict.Add(nums[i],i);
+            }
+        }
+        return null;
     } 
 }
     
-# Time Complexity: O(n^2)
+# Time Complexity: O(n)
 # Space Complexity: O(1)
