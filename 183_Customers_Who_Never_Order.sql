@@ -1,1 +1,0 @@
-select name as Customers from Customers where id not in( select DISTINCT  customerid from orders)
